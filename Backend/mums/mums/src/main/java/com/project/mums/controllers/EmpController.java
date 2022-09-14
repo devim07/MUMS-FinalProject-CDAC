@@ -3,6 +3,8 @@ package com.project.mums.controllers;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +44,7 @@ public class EmpController {
 	
 	
 	@PostMapping( "/")
-	public ResponseEntity<EmpDto> createEmp(@RequestBody EmpDto empDto){
+	public ResponseEntity<EmpDto> createEmp(@Valid @RequestBody EmpDto empDto){
 		EmpDto createdEmp=this.empService.createEmp(empDto);
 		return new ResponseEntity<>(createdEmp, HttpStatus.CREATED);
 	}
@@ -50,7 +52,7 @@ public class EmpController {
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<EmpDto> updateEmp(@RequestBody EmpDto empDto, @PathVariable String id){
+	public ResponseEntity<EmpDto> updateEmp(@Valid @RequestBody EmpDto empDto, @PathVariable String id){
 		return ResponseEntity.ok(this.empService.updateEmp(empDto, id));
 	}
 	
