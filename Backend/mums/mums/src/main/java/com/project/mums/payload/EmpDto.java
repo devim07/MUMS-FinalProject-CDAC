@@ -51,12 +51,12 @@ public class EmpDto {
 	public EmpDto(String empno, float basicSal, char deptno, char job, String city, String email,
 			Date hiredate) {
 		super();
-		this.empno = empno;
+		this.empno = empno.toUpperCase();
 		this.basicSal = basicSal;
 		this.deptno = deptno;
 		this.job = job;
-		this.city = city;
-		this.email = email;
+		this.city = city.toUpperCase();
+		this.email = email.toUpperCase();
 		this.hiredate = hiredate;
 	}
 

@@ -45,7 +45,7 @@ public class EmpController {
 	
 	@PostMapping( "/")
 	public ResponseEntity<EmpDto> createEmp(@Valid @RequestBody EmpDto empDto){
-		EmpDto createdEmp=this.empService.createEmp(empDto);
+		EmpDto createdEmp=this.empService.createEmp(empDto, null);
 		return new ResponseEntity<>(createdEmp, HttpStatus.CREATED);
 	}
 	
