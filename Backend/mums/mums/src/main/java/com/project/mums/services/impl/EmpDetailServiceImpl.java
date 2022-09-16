@@ -1,19 +1,14 @@
 package com.project.mums.services.impl;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.mums.entities.EmpDetail;
-import com.project.mums.exceptions.EmpDetailNotFoundException;
 import com.project.mums.exceptions.ResourceNotFoundException;
 import com.project.mums.payload.EmpDetailDto;
 import com.project.mums.repository.EmpDetailRepo;
 import com.project.mums.services.EmpDetailService;
-
 
 @Service
 public class EmpDetailServiceImpl implements EmpDetailService {
@@ -27,7 +22,9 @@ public class EmpDetailServiceImpl implements EmpDetailService {
 	
 	
 	@Override
-	public EmpDetailDto createEmpDetail(EmpDetailDto EmpDetailDto) {
+	public EmpDetailDto createEmpDetail(EmpDetailDto EmpDetailDto, String Empno) {
+//		if (Empno.toString().equalsIgnoreCase(EmpDetailDto.getEmpno()))
+//			throw new IdMisMatchException(Empno,EmpDetailDto.getEmpno());
 		EmpDetail EmpDetail=this.dtoToEmpDetail(EmpDetailDto);
 		EmpDetail savedEmpDetail=this.EmpDetailRepo.save(EmpDetail);
 		return EmpDetailToDto(savedEmpDetail);
@@ -37,9 +34,11 @@ public class EmpDetailServiceImpl implements EmpDetailService {
 	
 	@Override
 	public EmpDetailDto updateEmpDetail(EmpDetailDto EmpDetailDto, String Empno) {
+//		if (Empno.compareToIgnoreCase(EmpDetailDto.getEmpno())==0)
+//		throw new IdMisMatchException(Empno,EmpDetailDto.getEmpno());
 		EmpDetail EmpDetail=this.EmpDetailRepo.findById(Empno)
 				.orElseThrow(()->
-				new EmpDetailNotFoundException("Employee", "Employee ID", Empno)); 
+				new ResourceNotFoundException("Employee", "Employee ID", Empno)); 
 		EmpDetail.setEname(EmpDetailDto.getEname());
 		EmpDetail.setMobileNumber(EmpDetailDto.getMobileNumber());
 		EmpDetail.setGender(EmpDetailDto.getGender());
@@ -55,20 +54,11 @@ public class EmpDetailServiceImpl implements EmpDetailService {
 	
 
 	@Override
-	public EmpDetailDto getEmpDetailById(String EmpDetailno) {
-		EmpDetail EmpDetail=this.EmpDetailRepo.findById(EmpDetailno)
+	public EmpDetailDto getEmpDetailById(String empNo) {
+		EmpDetail empDetail=this.EmpDetailRepo.findById(empNo)
 				.orElseThrow(()->
-				new EmpDetailNotFoundException("EmpDetailloyee", "EmpDetailloyee ID", EmpDetailno)); 
-		return EmpDetailToDto(EmpDetail);
-	}
-
-	
-	
-	@Override
-	public List<EmpDetailDto> getAllEmpDetails() {
-		List<EmpDetail> EmpDetails = this.EmpDetailRepo.findAll();
-		List<EmpDetailDto> EmpDetailDtos = EmpDetails.stream().map(EmpDetail->this.EmpDetailToDto(EmpDetail)).collect(Collectors.toList());
-		return EmpDetailDtos;
+				new ResourceNotFoundException("EmpDetailloyee", "EmpDetailloyee ID", empNo)); 
+		return EmpDetailToDto(empDetail);
 	}
 
 	
@@ -77,7 +67,7 @@ public class EmpDetailServiceImpl implements EmpDetailService {
 	public void deleteEmpDetail(String empno) {
 		EmpDetail EmpDetail = this.EmpDetailRepo.findById(empno)
 		.orElseThrow(()->
-		new EmpDetailNotFoundException("Employee", "Employee ID", empno));
+		new ResourceNotFoundException("Employee", "Employee ID", empno));
 		this.EmpDetailRepo.delete(EmpDetail);
 	}
 	
