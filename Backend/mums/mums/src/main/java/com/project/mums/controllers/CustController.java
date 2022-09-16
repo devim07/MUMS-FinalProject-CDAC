@@ -25,6 +25,7 @@ public class CustController {
 	@Autowired
 	public CustService custService;
 
+	
 	@GetMapping("")
 	public ResponseEntity<List<CustDto>> getAllCust(){
 		return ResponseEntity.ok(this.custService.getAllCusts());
