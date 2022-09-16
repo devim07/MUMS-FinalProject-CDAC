@@ -2,6 +2,7 @@ package com.project.mums.services;
 
 import java.util.List;
 
+
 import com.project.mums.payload.OrderDto;
 
 public interface OrderService {
@@ -9,5 +10,5 @@ public interface OrderService {
 	OrderDto updateOrder (OrderDto orderDto, int orderno) ;
 	OrderDto getOrderById (int orderno) ;
 	List<OrderDto> getAllOrder();
-//	void deleteOrder (int orderno);
+	void deleteOrder (int orderno);
 }

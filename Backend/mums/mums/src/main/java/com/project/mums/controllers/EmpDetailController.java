@@ -1,8 +1,7 @@
 package com.project.mums.controllers;
 
+import java.util.List;
 import java.util.Map;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.mums.payload.EmpDetailDto;
+import com.project.mums.payload.EmpDetailDto;
 import com.project.mums.services.EmpDetailService;
 
 @RestController
-@RequestMapping("/employee/{id}/details")
+@RequestMapping("/empDetail")
 public class EmpDetailController {
 	
 	
@@ -29,31 +29,40 @@ public class EmpDetailController {
 	public EmpDetailService empDetailService;
 	
 	
+	
 	@GetMapping("")
+	public ResponseEntity<List<EmpDetailDto>> getAllempDetail(){
+		return ResponseEntity.ok(this.empDetailService.getAllEmpDetails());
+	}
+	
+	
+	
+	@GetMapping("/{id}")
 	public ResponseEntity<EmpDetailDto> getempDetailById(@PathVariable String id){
 		return ResponseEntity.ok(this.empDetailService.getEmpDetailById(id));
 	}
 	
 	
-	@PostMapping("")
-	public ResponseEntity<EmpDetailDto> createempDetail(@Valid @RequestBody EmpDetailDto empDetailDto, @PathVariable String id){
-		EmpDetailDto createdempDetail=this.empDetailService.createEmpDetail(empDetailDto, id);
+	
+	@PostMapping( "/")
+	public ResponseEntity<EmpDetailDto> createempDetail(@RequestBody EmpDetailDto empDetailDto){
+		EmpDetailDto createdempDetail=this.empDetailService.createEmpDetail(empDetailDto);
 		return new ResponseEntity<>(createdempDetail, HttpStatus.CREATED);
 	}
 	
 	
 	
-	@PutMapping("")
-	public ResponseEntity<EmpDetailDto> updateempDetail(@Valid @RequestBody EmpDetailDto empDetailDto, @PathVariable String id){
+	@PutMapping("/{id}")
+	public ResponseEntity<EmpDetailDto> updateempDetail(@RequestBody EmpDetailDto empDetailDto, @PathVariable String id){
 		return ResponseEntity.ok(this.empDetailService.updateEmpDetail(empDetailDto, id));
 	}
 	
 	
 	
-	@DeleteMapping("")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteempDetail(@PathVariable String id){
 		this.empDetailService.deleteEmpDetail(id);
-		return ResponseEntity.ok(Map.of("message", "Employee details of Employee ID= "+id+" deleted successfully"));
+		return ResponseEntity.ok(Map.of("message", "empDetailloyee deleted successfully"));
 	}
 
 }

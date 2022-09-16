@@ -26,7 +26,7 @@ public class EmpServiceImpl implements EmpService {
 	
 	
 	@Override
-	public EmpDto createEmp(EmpDto empDto, String id) {
+	public EmpDto createEmp(EmpDto empDto) {
 		Emp emp=this.dtoToEmp(empDto);
 		Emp savedEmp=this.empRepo.save(emp);
 		return empToDto(savedEmp);

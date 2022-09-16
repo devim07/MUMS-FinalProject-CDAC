@@ -1,10 +1,9 @@
 package com.project.mums.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.project.mums.entities.Order;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderRepo extends JpaRepository<Order,Integer>{
 	
 }
-
