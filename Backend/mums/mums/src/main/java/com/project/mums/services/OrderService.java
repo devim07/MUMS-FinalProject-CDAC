@@ -10,4 +10,6 @@ public interface OrderService {
 	OrderDto getOrderById (int orderno) ;
 	List<OrderDto> getAllOrder();
 //	void deleteOrder (int orderno);
+	List<OrderDto> getAllOrderOfCust(int custno);
+	List<OrderDto> getAllOrderOfSalesman(String salesno);
 }

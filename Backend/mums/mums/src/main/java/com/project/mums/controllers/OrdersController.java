@@ -34,11 +34,22 @@ public class OrdersController {
 	
 	
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{orderno}")
 	public ResponseEntity<OrderDto> getOrderById(@PathVariable int id){
 		return ResponseEntity.ok(this.orderService.getOrderById(id));
 	}
 	
+	
+	@GetMapping("customer/{custno}")
+	public ResponseEntity<List<OrderDto>> getAllOrderOfCust(@PathVariable int custno){
+		return ResponseEntity.ok(this.orderService.getAllOrderOfCust(custno));
+	}
+	
+	
+	@GetMapping("salesman/{salesno}")
+	public ResponseEntity<List<OrderDto>> getAllOrderOfSalesman(@PathVariable String salesno){
+		return ResponseEntity.ok(this.orderService.getAllOrderOfSalesman(salesno));
+	}
 	
 	
 	@PostMapping( "/")
