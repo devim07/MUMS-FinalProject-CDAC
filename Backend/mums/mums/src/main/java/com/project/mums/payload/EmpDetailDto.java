@@ -73,7 +73,7 @@ public class EmpDetailDto {
 	}
 	
 	public void setEmpno(String empno) {
-		this.empno = empno;
+		this.empno = empno.toUpperCase();
 	}
 	
 	public String getEname() {
@@ -81,7 +81,7 @@ public class EmpDetailDto {
 	}
 	
 	public void setEname(String ename) {
-		this.ename = ename;
+		this.ename = ename.toUpperCase();
 	}
 	
 	public long getMobileNumber() {
@@ -126,7 +126,7 @@ public class EmpDetailDto {
 	
 	
 	public void setCity(String city) {
-		this.city = city;
+		this.city = city.toUpperCase();
 	}
 	
 	
@@ -146,7 +146,7 @@ public class EmpDetailDto {
 	
 	
 	public void setAddress(String address) {
-		this.address = address;
+		this.address = address.toUpperCase();
 	}
    
     

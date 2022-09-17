@@ -51,7 +51,7 @@ public class CustDto {
 	}
 
 	public void setCustname(String custname) {
-		this.custname = custname;
+		this.custname = custname.toUpperCase();
 	}
 
 	public String getCity() {
@@ -59,7 +59,7 @@ public class CustDto {
 	}
 
 	public void setCity(String city) {
-		this.city = city;
+		this.city = city.toUpperCase();
 	}
 
 	public byte getRating() {

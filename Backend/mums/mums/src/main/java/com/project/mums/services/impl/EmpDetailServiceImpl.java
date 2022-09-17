@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.mums.entities.EmpDetail;
+import com.project.mums.exceptions.IdMisMatchException;
 import com.project.mums.exceptions.ResourceNotFoundException;
 import com.project.mums.payload.EmpDetailDto;
 import com.project.mums.repository.EmpDetailRepo;
@@ -23,8 +24,8 @@ public class EmpDetailServiceImpl implements EmpDetailService {
 	
 	@Override
 	public EmpDetailDto createEmpDetail(EmpDetailDto EmpDetailDto, String Empno) {
-//		if (Empno.toString().equalsIgnoreCase(EmpDetailDto.getEmpno()))
-//			throw new IdMisMatchException(Empno,EmpDetailDto.getEmpno());
+		if (!Empno.toUpperCase().equals(EmpDetailDto.getEmpno()))
+			throw new IdMisMatchException(Empno,EmpDetailDto.getEmpno());
 		EmpDetail EmpDetail=this.dtoToEmpDetail(EmpDetailDto);
 		EmpDetail savedEmpDetail=this.EmpDetailRepo.save(EmpDetail);
 		return EmpDetailToDto(savedEmpDetail);
@@ -34,11 +35,11 @@ public class EmpDetailServiceImpl implements EmpDetailService {
 	
 	@Override
 	public EmpDetailDto updateEmpDetail(EmpDetailDto EmpDetailDto, String Empno) {
-//		if (Empno.compareToIgnoreCase(EmpDetailDto.getEmpno())==0)
-//		throw new IdMisMatchException(Empno,EmpDetailDto.getEmpno());
+		if (!Empno.toUpperCase().equals(EmpDetailDto.getEmpno()))
+			throw new IdMisMatchException(Empno,EmpDetailDto.getEmpno());
 		EmpDetail EmpDetail=this.EmpDetailRepo.findById(Empno)
-				.orElseThrow(()->
-				new ResourceNotFoundException("Employee", "Employee ID", Empno)); 
+			.orElseThrow(()->
+			new ResourceNotFoundException("Employee", "Employee ID", Empno)); 
 		EmpDetail.setEname(EmpDetailDto.getEname());
 		EmpDetail.setMobileNumber(EmpDetailDto.getMobileNumber());
 		EmpDetail.setGender(EmpDetailDto.getGender());
