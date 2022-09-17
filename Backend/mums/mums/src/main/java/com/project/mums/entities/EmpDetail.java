@@ -147,4 +147,7 @@ public class EmpDetail {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+
 }

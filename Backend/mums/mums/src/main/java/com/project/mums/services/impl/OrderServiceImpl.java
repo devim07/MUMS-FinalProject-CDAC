@@ -2,16 +2,15 @@ package com.project.mums.services.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+import com.project.mums.entities.Order;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.project.mums.entities.Order;
 import com.project.mums.exceptions.ResourceNotFoundException;
 import com.project.mums.payload.OrderDto;
 import com.project.mums.repository.OrderRepo;
 import com.project.mums.services.OrderService;
+
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -76,24 +75,26 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public OrderDto updateOrder(OrderDto orderDto, int orderno) {
 		Order order=this.orderRepo.findById(orderno)
-				.orElseThrow(()->
-				new ResourceNotFoundException("Order", "Order ID", ((Integer)orderno).toString())); 
+			.orElseThrow(()->
+			new ResourceNotFoundException("Order", "Order ID", orderno)); 
+		order.setCustno(orderDto.getCustno());
+		order.setOrderUnit(orderDto.getOrderUnit());
+		order.setOrderDate(orderDto.getOrderDate());
 	    order.setStatus(orderDto.getStatus());
 		order.setBatchno(orderDto.getBatchno());
 		Order updatedOrder=this.orderRepo.save(order);
 		return orderToDto(updatedOrder);
 	}
-
-
 	
 	
-//	@Override
-//	public void deleteOrder(int orderno) {
-//		Order order = this.orderRepo.findById(orderno)
-//				.orElseThrow(()->
-//				new ResourceNotFoundException("Order", "Order ID",((Integer)orderno).toString())); 
-//				this.orderRepo.delete(order);
-//	}
+
+	@Override
+	public void deleteOrder(int orderno) {
+		Order order = this.orderRepo.findById(orderno)
+				.orElseThrow(()->
+				new ResourceNotFoundException("Order", "Order ID", orderno));
+				this.orderRepo.delete(order);
+	}
 	
 	
 	

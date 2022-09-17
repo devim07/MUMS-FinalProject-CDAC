@@ -22,8 +22,6 @@ public class Cust {
 	private String city;
 	private  byte rating;
 	
-	
-	
 	public Cust() {
 		super();
 		}
@@ -76,4 +74,9 @@ public class Cust {
 	public void setRating(byte rating) {
 		this.rating = rating;
 	}
+	
+	
+	
+
+	
 }

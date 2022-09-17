@@ -2,22 +2,10 @@ package com.project.mums.payload;
 
 import java.sql.Date;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
-
 public class OrderDto {
-	@NotNull
 	private int custno;
-	
-	@NotNull
-	@Min (value=100, message="Order of minimum 100 units should be place")
 	private int orderUnit;
-	
-	@NotNull
-	@PastOrPresent(message="Order date cant be a date in future")
     private Date orderDate;
-	
 	private String status;
     private String batchno;
 
@@ -35,7 +23,7 @@ public class OrderDto {
 		this.custno = custno;
 		this.orderUnit = orderUnit;
 		this.orderDate = orderDate;
-		this.status = status.toUpperCase();
+		this.status = status;
 		this.batchno = batchno;
 	}
 

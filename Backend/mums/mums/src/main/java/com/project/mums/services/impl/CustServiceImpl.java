@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.mums.entities.Cust;
-import com.project.mums.exceptions.IdMisMatchException;
 import com.project.mums.exceptions.ResourceNotFoundException;
 import com.project.mums.payload.CustDto;
 import com.project.mums.repository.CustRepo;
@@ -36,8 +35,6 @@ public class CustServiceImpl  implements CustService{
 
 	@Override
 	public CustDto updateCust(CustDto custDto, int custno) {
-		if (custno != custDto.getCustno())
-			throw new IdMisMatchException(((Integer)custno).toString(),((Integer)custDto.getCustno()).toString());
 		Cust cust = this.custRepo.findById(custno)
 			.orElseThrow(()->
 			new ResourceNotFoundException("Customer","Customer ID",((Integer)custno).toString()));
@@ -47,18 +44,14 @@ public class CustServiceImpl  implements CustService{
 		Cust updatedCust=this.custRepo.save(cust);
 		return custToDto(updatedCust);
 	}
-	
-	
 
 	@Override
 	public CustDto getCustById(int custno) {
 		Cust cust=this.custRepo.findById(custno)
 				.orElseThrow(()->
-				new ResourceNotFoundException("Customer","Customer ID",((Integer)custno).toString()));
+				new ResourceNotFoundException("Customer","Customer Id",custno));
 		return custToDto(cust);
 	}
-	
-	
 
 	@Override
 	public List<CustDto> getAllCusts() {
@@ -67,8 +60,13 @@ public class CustServiceImpl  implements CustService{
 				return custDtos;
 	}
 
-	
-	
+	@Override
+	public void deleteCust(int custno) {
+		Cust cust = this.custRepo.findById(custno)
+		 .orElseThrow(()->
+		 	new ResourceNotFoundException("Customer","Customer Id",custno));
+			 this.custRepo.delete(cust);	
+	}
 	
 	private Cust dtoToCust(CustDto custDto) {
 		Cust cust = this.modelMapper.map(custDto, Cust.class);
@@ -79,4 +77,8 @@ public class CustServiceImpl  implements CustService{
 		CustDto custDto = this.modelMapper.map(cust,CustDto.class);
 		return custDto;
 	}
+
+	
+	
+	
 }

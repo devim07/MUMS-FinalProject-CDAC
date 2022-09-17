@@ -15,4 +15,3 @@ public interface OrderRepo extends JpaRepository<Order,Integer>{
 	@Procedure (value="NEW_ORDER_ENTRY")
 	public int newOrdeEntry(int custno, int orderUnit, Date orderDate);
 }
-

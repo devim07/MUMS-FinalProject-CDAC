@@ -4,6 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.project.mums.entities.Cust;
 
+
 public interface CustRepo extends JpaRepository<Cust, Integer>{
+//error int required in place of string
+
+	
 
 }
