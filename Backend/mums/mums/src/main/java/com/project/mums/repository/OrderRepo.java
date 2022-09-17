@@ -12,7 +12,6 @@ public interface OrderRepo extends JpaRepository<Order,Integer>{
 	public List<Order> findByCustno (int custno);
 	public List<Order> findBySalesno (String salesno);
 	
-	
 	@Procedure (value="NEW_ORDER_ENTRY")
 	public int newOrdeEntry(int custno, int orderUnit, Date orderDate);
 }
