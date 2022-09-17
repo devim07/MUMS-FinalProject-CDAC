@@ -84,7 +84,7 @@ public class OrderDto {
 
 
 	public void setStatus(String status) {
-		this.status = status;
+		this.status = status.toUpperCase();
 	}
 
 

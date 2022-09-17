@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.mums.entities.Emp;
+import com.project.mums.exceptions.IdMisMatchException;
 import com.project.mums.exceptions.ResourceNotFoundException;
 import com.project.mums.payload.EmpDto;
 import com.project.mums.repository.EmpRepo;
@@ -36,6 +37,8 @@ public class EmpServiceImpl implements EmpService {
 	
 	@Override
 	public EmpDto updateEmp(EmpDto empDto, String empno) {
+		if (!(empno).toUpperCase().equals(empDto.getEmpno()))
+			throw new IdMisMatchException(empno,empDto.getEmpno());
 		Emp emp=this.empRepo.findById(empno)
 				.orElseThrow(()->
 				new ResourceNotFoundException("Employee", "Employee ID", empno)); 

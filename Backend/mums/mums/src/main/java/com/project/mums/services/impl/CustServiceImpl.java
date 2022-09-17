@@ -39,8 +39,8 @@ public class CustServiceImpl  implements CustService{
 		if (custno != custDto.getCustno())
 			throw new IdMisMatchException(((Integer)custno).toString(),((Integer)custDto.getCustno()).toString());
 		Cust cust = this.custRepo.findById(custno)
-				.orElseThrow(()->
-				new ResourceNotFoundException("Customer","Customer ID",((Integer)custno).toString()));
+			.orElseThrow(()->
+			new ResourceNotFoundException("Customer","Customer ID",((Integer)custno).toString()));
 		cust.setCustname(custDto.getCustname());
 		cust.setCity(custDto.getCity());
 		cust.setRating(custDto.getRating());
