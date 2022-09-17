@@ -21,14 +21,54 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	
+	
+	@Override
+	public List<OrderDto> getAllOrder() {
+		List<Order> orders = this.orderRepo.findAll();
+		List<OrderDto> orderDtos = orders.stream().map(order->this.orderToDto(order)).collect(Collectors.toList());
+		return orderDtos;
+	}
+	
+	
+	
+	@Override
+	public OrderDto getOrderById(int orderno) {
+		Order order=this.orderRepo.findById(orderno)
+				.orElseThrow(()->
+				new ResourceNotFoundException("Order", "Order ID", ((Integer)orderno).toString())); 
+		return orderToDto(order);
+	}
+
+	
+	
+	@Override
+	public List<OrderDto> getAllOrderOfCust(int custno){
+		List<Order> orders = this.orderRepo.findByCustno(custno);
+		List<OrderDto> orderDtos = orders.stream().map(order->this.orderToDto(order)).collect(Collectors.toList());
+		return orderDtos;
+	}
+	
+	
+	
+	@Override
+	public List<OrderDto> getAllOrderOfSalesman(String salesno){
+		List<Order> orders = this.orderRepo.findBySalesno(salesno);
+		List<OrderDto> orderDtos = orders.stream().map(order->this.orderToDto(order)).collect(Collectors.toList());
+		return orderDtos;
+	}
+	
+
 
 	@Override
 	public OrderDto createOrder(OrderDto orderDto) {
 		Order order=this.dtoToOrder(orderDto);
-		Order savedOrder=this.orderRepo.save(order);
-		return orderToDto(savedOrder);
-
-		
+		int newOrderNo = this.orderRepo.newOrdeEntry(order.getCustno(), order.getOrderUnit(), order.getOrderDate());
+		Order newOrder=this.orderRepo.findById(newOrderNo)
+				.orElseThrow(()->
+		new ResourceNotFoundException("Order", "Order ID", ((Integer)newOrderNo).toString())); ;
+		return orderToDto(newOrder);	
 	}
 
 	
@@ -44,24 +84,6 @@ public class OrderServiceImpl implements OrderService {
 		return orderToDto(updatedOrder);
 	}
 
-	
-	
-	@Override
-	public OrderDto getOrderById(int orderno) {
-		Order order=this.orderRepo.findById(orderno)
-				.orElseThrow(()->
-				new ResourceNotFoundException("Order", "Order ID", ((Integer)orderno).toString())); 
-		return orderToDto(order);
-	}
-
-	
-	
-	@Override
-	public List<OrderDto> getAllOrder() {
-		List<Order> orders = this.orderRepo.findAll();
-		List<OrderDto> orderDtos = orders.stream().map(order->this.orderToDto(order)).collect(Collectors.toList());
-		return orderDtos;
-	}
 
 	
 	

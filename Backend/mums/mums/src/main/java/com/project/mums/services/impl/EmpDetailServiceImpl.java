@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.mums.entities.EmpDetail;
-import com.project.mums.exceptions.IdMisMatchException;
 import com.project.mums.exceptions.ResourceNotFoundException;
 import com.project.mums.payload.EmpDetailDto;
 import com.project.mums.repository.EmpDetailRepo;

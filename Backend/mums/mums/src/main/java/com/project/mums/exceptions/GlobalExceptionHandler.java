@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -36,14 +35,14 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<Map<String,String>>(resp, HttpStatus.BAD_REQUEST);
 	}
 	
-	@ExceptionHandler(DataIntegrityViolationException.class)
-	public ResponseEntity<Map<String, String>> DataIntegrityViolationExceptionHandler(DataIntegrityViolationException ex){
-		Map<String, String> resp=new HashMap<>();
-		String fieldName="Data Exist";
-		String message="Part or whole of sent data, already exist. Cannot insert into database";
-		resp.put(fieldName, message);
-		return new ResponseEntity<Map<String,String>>(resp, HttpStatus.NOT_ACCEPTABLE);
-	}
+//	@ExceptionHandler(DataIntegrityViolationException.class)
+//	public ResponseEntity<Map<String, String>> DataIntegrityViolationExceptionHandler(DataIntegrityViolationException ex){
+//		Map<String, String> resp=new HashMap<>();
+//		String fieldName="Data Exist";
+//		String message="Part or whole of sent data, already exist. Cannot insert into database";
+//		resp.put(fieldName, message);
+//		return new ResponseEntity<Map<String,String>>(resp, HttpStatus.NOT_ACCEPTABLE);
+//	}
 	
 	@ExceptionHandler(IdMisMatchException.class)
 	public ResponseEntity<Map<String, String>> idMisMatchExceptionHandler(IdMisMatchException ex){

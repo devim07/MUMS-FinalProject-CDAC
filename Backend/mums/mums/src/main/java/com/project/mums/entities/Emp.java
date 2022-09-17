@@ -25,6 +25,7 @@ public class Emp {
     private float hra;
     private float totsal;
     private Date hiredate;
+
     
     
     
@@ -146,8 +147,5 @@ public class Emp {
 	public void setHiredate(Date hiredate) {
 		this.hiredate = hiredate;
 	}
-
-	
-	
 
 }
