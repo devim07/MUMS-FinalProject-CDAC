@@ -8,6 +8,9 @@ import javax.validation.constraints.PastOrPresent;
 
 public class OrderDto {
 	@NotNull
+	private int orderno;
+	
+	@NotNull
 	private int custno;
 	
 	@NotNull
@@ -30,8 +33,9 @@ public class OrderDto {
 
 
 
-	public OrderDto(int custno, int orderUnit, Date orderDate, String status, String batchno) {
+	public OrderDto(int orderno, int custno, int orderUnit, Date orderDate, String status, String batchno) {
 		super();
+		this.orderno=orderno;
 		this.custno = custno;
 		this.orderUnit = orderUnit;
 		this.orderDate = orderDate;
@@ -39,7 +43,15 @@ public class OrderDto {
 		this.batchno = batchno;
 	}
 
+	public int getOrderno() {
+		return orderno;
+	}
 
+
+
+	public void setOrderno(int orderno) {
+		this.orderno = orderno;
+	}
 
 	public int getCustno() {
 		return custno;
