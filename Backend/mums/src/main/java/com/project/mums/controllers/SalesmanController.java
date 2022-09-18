@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.mums.payload.SalesmanDto;
 import com.project.mums.services.SalesmanService;
 
-
-
-	
 	@RestController
 	@RequestMapping("/salesman")
 	public class SalesmanController {

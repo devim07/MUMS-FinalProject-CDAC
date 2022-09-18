@@ -2,7 +2,7 @@ package com.project.mums.payload;
 
 public class SalesmanDto {
 	private String salesmanno;
-	private float commition;
+	private float commission;
     private String location;
 	
     public SalesmanDto() {
@@ -10,10 +10,10 @@ public class SalesmanDto {
 	
 	}
 
-	public SalesmanDto(String salesmanno, float commition, String location) {
+	public SalesmanDto(String salesmanno, float commission, String location) {
 		super();
 		this.salesmanno = salesmanno;
-		this.commition = commition;
+		this.commission = commission;
 		this.location = location;
 	}
 
@@ -25,12 +25,12 @@ public class SalesmanDto {
 		this.salesmanno = salesmanno;
 	}
 
-	public float getCommition() {
-		return commition;
+	public float getCommission() {
+		return commission;
 	}
 
-	public void setCommition(float commition) {
-		this.commition = commition;
+	public void setCommission(float commission) {
+		this.commission = commission;
 	}
 
 	public String getLocation() {

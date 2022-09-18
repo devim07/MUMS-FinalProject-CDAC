@@ -14,15 +14,15 @@ public class Salesman {
 		private String salesmanno;
 		
 		@Column (name="COMM")
-		private float commition;
+		private float commission;
 		
 		@Column (name="LOC")
 		private String location;
 
-		public Salesman(String salesmanno, float commition, String location) {
+		public Salesman(String salesmanno, float commission, String location) {
 			super();
 			this.salesmanno = salesmanno;
-			this.commition = commition;
+			this.commission = commission;
 			this.location = location;
 		}
           
@@ -40,12 +40,12 @@ public class Salesman {
 			this.salesmanno = salesmanno;
 		}
 
-		public float getCommition() {
-			return commition;
+		public float getCommission() {
+			return commission;
 		}
 
-		public void setCommition(float commition) {
-			this.commition = commition;
+		public void setCommission(float commission) {
+			this.commission = commission;
 		}
 
 		public String getLocation() {

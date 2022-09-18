@@ -40,7 +40,7 @@ public class SalesmanServiceImpl implements SalesmanService {
 				.orElseThrow(()->
 				new ResourceNotFoundException("Salesman", "Salesman NO", salesmanno)); 
 		salesman.setSalesmanno(salesmanDto.getSalesmanno());
-		salesman.setCommition(salesmanDto.getCommition());
+		salesman.setCommission(salesmanDto.getCommission());
 		salesman.setLocation(salesmanDto.getLocation());
 		Salesman updatedSalesman=this.salesmanRepo.save(salesman);
 		return salesmanToDto(updatedSalesman);
