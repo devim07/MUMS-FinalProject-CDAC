@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.project.mums.entities.Dept;
 import com.project.mums.exceptions.IdMisMatchException;
+import com.project.mums.exceptions.PrimaryKeyViolationException;
+import com.project.mums.exceptions.ResourceNotFoundException;
 import com.project.mums.payload.DeptDto;
 import com.project.mums.repository.DeptRepo;
 import com.project.mums.services.DeptService;
@@ -28,8 +30,9 @@ public class DeptServiceImpl implements DeptService{
 	@Override
 	public DeptDto createDept(DeptDto deptDto) {
 		Dept dept = this.dtoToDept(deptDto);
-		Dept savedDept = this.deptRepo.save(dept);
-		return deptToDto(savedDept) ;
+		if(this.deptRepo.existsById(deptDto.getDeptno()))
+			throw new PrimaryKeyViolationException("Department", deptDto.getDeptno());
+		return deptToDto(this.deptRepo.save(dept)) ;
 	}
 	
 
@@ -46,11 +49,10 @@ public class DeptServiceImpl implements DeptService{
 	public DeptDto updateDept(DeptDto deptDto, String id){
 		if (!id.toUpperCase().equals(deptDto.getDeptno()))
 			throw new IdMisMatchException(id,deptDto.getDeptno());
-		Dept dept=this.deptRepo.getById(deptDto.getDeptno());		
-		dept.setDeptname(deptDto.getDeptname());
-		dept.setManager(deptDto.getManager());
-		Dept updatedDept=this.deptRepo.save(dept);
-		return deptToDto(updatedDept);
+		Dept dept=this.deptRepo.findById(deptDto.getDeptno())
+			.orElseThrow(()->new ResourceNotFoundException("Department", "Id", deptDto.getDeptno()));
+		dept=dtoToDept(deptDto);
+		return deptToDto(this.deptRepo.save(dept));
 	}
 	
 	

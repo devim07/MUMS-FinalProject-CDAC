@@ -23,14 +23,14 @@ public class SalesmanServiceImpl implements SalesmanService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	@Override
-	public SalesmanDto createSalesman(SalesmanDto salesmanDto) {
-		Salesman salesman=this.dtoToSalesman(salesmanDto);
-		Salesman savedSalesman=this.salesmanRepo.save(salesman);
-		return salesmanToDto(savedSalesman);
-
-		
-	}
+//	@Override
+//	public SalesmanDto createSalesman(SalesmanDto salesmanDto) {
+//		Salesman salesman=this.dtoToSalesman(salesmanDto);
+//		Salesman savedSalesman=this.salesmanRepo.save(salesman);
+//		return salesmanToDto(savedSalesman);
+//
+//		
+//	}
 
 	
 

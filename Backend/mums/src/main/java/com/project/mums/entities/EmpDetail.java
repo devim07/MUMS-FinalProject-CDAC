@@ -20,7 +20,7 @@ public class EmpDetail {
 	private String ename;
     //ENAME VARCHAR(25) NOT NULL,
 	
-	@Column(name="MOB",length=13,nullable=false)
+	@Column(name="MOB",length=10,nullable=false)
 	private long mobileNumber;
     //MOB BIGINT NOT NULL
 	

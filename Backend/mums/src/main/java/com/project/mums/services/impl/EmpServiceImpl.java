@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.mums.entities.Emp;
 import com.project.mums.exceptions.IdMisMatchException;
+import com.project.mums.exceptions.PrimaryKeyViolationException;
 import com.project.mums.exceptions.ResourceNotFoundException;
 import com.project.mums.payload.EmpDto;
 import com.project.mums.repository.EmpRepo;
@@ -27,8 +28,10 @@ public class EmpServiceImpl implements EmpService {
 	
 	
 	@Override
-	public EmpDto createEmp(EmpDto empDto, String id) {
+	public EmpDto createEmp(EmpDto empDto){
 		Emp emp=this.dtoToEmp(empDto);
+		if(this.empRepo.existsById(emp.getEmpno()))
+			throw new PrimaryKeyViolationException("Employee", emp.getEmpno());
 		Emp savedEmp=this.empRepo.save(emp);
 		return empToDto(savedEmp);
 	}
@@ -40,16 +43,9 @@ public class EmpServiceImpl implements EmpService {
 		if (!(empno).toUpperCase().equals(empDto.getEmpno()))
 			throw new IdMisMatchException(empno,empDto.getEmpno());
 		Emp emp=this.empRepo.findById(empno)
-				.orElseThrow(()->
-				new ResourceNotFoundException("Employee", "Employee ID", empno)); 
-		emp.setBasicSal(empDto.getBasicSal());
-		emp.setCity(empDto.getCity());
-		emp.setDeptno(empDto.getDeptno());
-		emp.setEmail(empDto.getEmail());
-		emp.setHiredate(empDto.getHiredate());
-		emp.setJob(empDto.getJob());
-		Emp updatedEmp=this.empRepo.save(emp);
-		return empToDto(updatedEmp);
+				.orElseThrow(()-> new ResourceNotFoundException("Employee", "Employee ID", empno));
+		emp=dtoToEmp(empDto);
+		return empToDto(this.empRepo.save(emp));
 	}
 	
 	

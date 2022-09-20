@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.mums.entities.Cust;
 import com.project.mums.exceptions.IdMisMatchException;
+import com.project.mums.exceptions.PrimaryKeyViolationException;
 import com.project.mums.exceptions.ResourceNotFoundException;
 import com.project.mums.payload.CustDto;
 import com.project.mums.repository.CustRepo;
@@ -28,7 +29,12 @@ public class CustServiceImpl  implements CustService{
 	@Override
 	public CustDto createCust(CustDto custDto) {
 		Cust cust = this.dtoToCust(custDto);
+		if(this.custRepo.existsById(cust.getCustno()))
+			throw new PrimaryKeyViolationException("Customer", ((Integer)custDto.getCustno()).toString());
 		Cust savedCust = this.custRepo.save(cust);
+		savedCust=this.custRepo.getByMobileNumber(custDto.getMobileNumber());
+		this.custRepo.custSalesmanAloocation(savedCust.getCustno());
+		savedCust=this.custRepo.getByMobileNumber(custDto.getMobileNumber());
 		return custToDto(savedCust) ;
 	}
 
@@ -41,11 +47,8 @@ public class CustServiceImpl  implements CustService{
 		Cust cust = this.custRepo.findById(custno)
 			.orElseThrow(()->
 			new ResourceNotFoundException("Customer","Customer ID",((Integer)custno).toString()));
-		cust.setCustname(custDto.getCustname());
-		cust.setCity(custDto.getCity());
-		cust.setRating(custDto.getRating());
-		Cust updatedCust=this.custRepo.save(cust);
-		return custToDto(updatedCust);
+		cust= dtoToCust(custDto);
+		return custToDto(this.custRepo.save(cust));
 	}
 	
 	

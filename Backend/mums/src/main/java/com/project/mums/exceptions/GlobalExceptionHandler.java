@@ -69,10 +69,20 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	public ResponseEntity<Map<String, String>> HttpMessageNotReadableExceptionHandler(HttpMessageNotReadableException ex){
 		Map<String, String> resp=new HashMap<>();
-		String fieldName="Http Request date not readable";
+		String fieldName="Http Request data not readable";
 		String message=ex.getMessage();
 		resp.put(fieldName, message);
 		return new ResponseEntity<Map<String,String>>(resp, HttpStatus.NOT_ACCEPTABLE);
+	}
+	
+	
+	@ExceptionHandler(PrimaryKeyViolationException.class)
+	public ResponseEntity<Map<String, String>> PrimaryKeyViolationExceptionHandler(PrimaryKeyViolationException ex){
+		Map<String, String> resp=new HashMap<>();
+		String fieldName="Primary Key Violation";
+		String message=ex.getMessage();
+		resp.put(fieldName, message);
+		return new ResponseEntity<Map<String,String>>(resp, HttpStatus.CONFLICT);
 	}
 	
 }

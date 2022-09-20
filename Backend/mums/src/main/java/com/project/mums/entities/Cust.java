@@ -19,6 +19,9 @@ public class Cust {
 	@Column(name="cname")
 	private String custname;
 	
+	@Column(name="MOB",length=10,nullable=false)
+	private long mobileNumber;
+	
 	private String city;
 	private  byte rating;
 	
@@ -28,14 +31,18 @@ public class Cust {
 		super();
 		}
 
-	public Cust(int custno, String salesno, String custname, String city, byte rating) {
+	
+	public Cust(int custno, String salesno, String custname, long mobileNumber, String city, byte rating) {
 		super();
 		this.custno = custno;
 		this.salesno = salesno;
 		this.custname = custname;
+		this.mobileNumber = mobileNumber;
 		this.city = city;
 		this.rating = rating;
 	}
+
+
 
 	public int getCustno() {
 		return custno;
@@ -60,6 +67,15 @@ public class Cust {
 	public void setCustname(String custname) {
 		this.custname = custname;
 	}
+
+	public long getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(long mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
 
 	public String getCity() {
 		return city;

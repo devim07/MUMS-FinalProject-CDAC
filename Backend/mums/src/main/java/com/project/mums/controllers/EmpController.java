@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.project.mums.services.EmpService;
 
 @RestController
 @RequestMapping("/employee")
+@CrossOrigin("http://localhost:3000")
 public class EmpController {
 	
 	@Autowired
@@ -45,7 +47,7 @@ public class EmpController {
 	
 	@PostMapping( "/")
 	public ResponseEntity<EmpDto> createEmp(@Valid @RequestBody EmpDto empDto){
-		EmpDto createdEmp=this.empService.createEmp(empDto, null);
+		EmpDto createdEmp=this.empService.createEmp(empDto);
 		return new ResponseEntity<>(createdEmp, HttpStatus.CREATED);
 	}
 	

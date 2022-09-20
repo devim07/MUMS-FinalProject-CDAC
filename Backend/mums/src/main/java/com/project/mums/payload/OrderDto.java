@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
 public class OrderDto {
+	private int orderno;
 	@NotNull
 	private int custno;
 	
@@ -30,14 +31,19 @@ public class OrderDto {
 
 
 
-	public OrderDto(int custno, int orderUnit, Date orderDate, String status, String batchno) {
+	public OrderDto(int orderno, @NotNull int custno,
+			@NotNull @Min(value = 100, message = "Order of minimum 100 units should be place") int orderUnit,
+			@NotNull @PastOrPresent(message = "Order date cant be a date in future") Date orderDate, String status,
+			String batchno) {
 		super();
+		this.orderno = orderno;
 		this.custno = custno;
 		this.orderUnit = orderUnit;
 		this.orderDate = orderDate;
-		this.status = status.toUpperCase();
+		this.status = status;
 		this.batchno = batchno;
 	}
+
 
 
 
@@ -97,6 +103,18 @@ public class OrderDto {
 
 	public void setBatchno(String batchno) {
 		this.batchno = batchno;
+	}
+
+
+
+	public int getOrderno() {
+		return orderno;
+	}
+
+
+
+	public void setOrderno(int orderno) {
+		this.orderno = orderno;
 	}
 
 

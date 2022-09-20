@@ -28,28 +28,20 @@ public class EmpDetailServiceImpl implements EmpDetailService {
 			throw new IdMisMatchException(Empno,EmpDetailDto.getEmpno());
 		EmpDetail EmpDetail=this.dtoToEmpDetail(EmpDetailDto);
 		EmpDetail savedEmpDetail=this.EmpDetailRepo.save(EmpDetail);
-		return EmpDetailToDto(savedEmpDetail);
+		return empDetailToDto(savedEmpDetail);
 	}
 
 	
 	
 	@Override
-	public EmpDetailDto updateEmpDetail(EmpDetailDto EmpDetailDto, String Empno) {
-		if (!Empno.toUpperCase().equals(EmpDetailDto.getEmpno()))
-			throw new IdMisMatchException(Empno,EmpDetailDto.getEmpno());
-		EmpDetail EmpDetail=this.EmpDetailRepo.findById(Empno)
+	public EmpDetailDto updateEmpDetail(EmpDetailDto empDetailDto, String Empno) {
+		if (!Empno.toUpperCase().equals(empDetailDto.getEmpno()))
+			throw new IdMisMatchException(Empno,empDetailDto.getEmpno());
+		EmpDetail empDetail=this.EmpDetailRepo.findById(Empno)
 			.orElseThrow(()->
 			new ResourceNotFoundException("Employee", "Employee ID", Empno)); 
-		EmpDetail.setEname(EmpDetailDto.getEname());
-		EmpDetail.setMobileNumber(EmpDetailDto.getMobileNumber());
-		EmpDetail.setGender(EmpDetailDto.getGender());
-		EmpDetail.setAadhar(EmpDetailDto.getAadhar());
-		EmpDetail.setDob(EmpDetailDto.getDob());
-		EmpDetail.setCity(EmpDetailDto.getCity());
-		EmpDetail.setPinCode(EmpDetailDto.getPinCode());
-		EmpDetail.setAddress(EmpDetailDto.getAddress());
-		EmpDetail updatedEmpDetail=this.EmpDetailRepo.save(EmpDetail);
-		return EmpDetailToDto(updatedEmpDetail);
+		empDetail=dtoToEmpDetail(empDetailDto);
+		return empDetailToDto(this.EmpDetailRepo.save(empDetail));
 	}
 	
 	
@@ -59,7 +51,7 @@ public class EmpDetailServiceImpl implements EmpDetailService {
 		EmpDetail empDetail=this.EmpDetailRepo.findById(empNo)
 				.orElseThrow(()->
 				new ResourceNotFoundException("EmpDetailloyee", "EmpDetailloyee ID", empNo)); 
-		return EmpDetailToDto(empDetail);
+		return empDetailToDto(empDetail);
 	}
 
 	
@@ -81,9 +73,8 @@ public class EmpDetailServiceImpl implements EmpDetailService {
 	
 	
 	
-	public EmpDetailDto EmpDetailToDto(EmpDetail EmpDetail) {
-		EmpDetailDto EmpDetailDto=this.modelMapper.map(EmpDetail, EmpDetailDto.class);
+	public EmpDetailDto empDetailToDto(EmpDetail empDetail) {
+		EmpDetailDto EmpDetailDto=this.modelMapper.map(empDetail, EmpDetailDto.class);
 		return EmpDetailDto;
 	}
-
 }
