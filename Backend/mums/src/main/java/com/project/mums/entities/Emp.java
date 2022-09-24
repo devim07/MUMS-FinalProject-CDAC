@@ -14,6 +14,8 @@ public class Emp {
 	@Column(name="ENUM",length=4)
 	private String empno;
 	
+	private String ename;
+	
 	@Column (name="BASIC_SAL", nullable=false)
 	private float basicSal;
     
@@ -36,10 +38,11 @@ public class Emp {
 	}
 
 
-	public Emp(String empno, float basicSal, char deptno, char job, int holidays, String city, String email, float hra,
+	public Emp(String empno, String ename, float basicSal, char deptno, char job, int holidays, String city, String email, float hra,
 		float totsal, Date hiredate, String photo) {
 		super();
 		this.empno = empno;
+		this.ename = ename;
 		this.basicSal = basicSal;
 		this.deptno = deptno;
 		this.job = job;
@@ -63,7 +66,15 @@ public class Emp {
 		this.empno = empno;
 	}
 
-
+	
+	public String getEname() {
+		return ename;
+	}
+	
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	
 	public float getBasicSal() {
 		return basicSal;
 	}

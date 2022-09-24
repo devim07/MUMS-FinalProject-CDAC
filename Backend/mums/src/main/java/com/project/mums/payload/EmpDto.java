@@ -16,6 +16,10 @@ public class EmpDto {
 	@Size(min=4, max=4, message="Employee ID should only contain 4 characters")
 	private String empno;
 	
+	@NotEmpty
+	@Size(min=4, max=25, message="Employee name should have 4-25 characters")
+	private String ename;
+	
 	@NotNull
 	@Min (value=15000, message="Basic salary should be greater than Rs. 15000")
 	@Max (value=50000, message="Basic salary should be less than Rs. 50000")
@@ -48,9 +52,9 @@ public class EmpDto {
 		super();
 	}
 
-
 	public EmpDto(
 			@NotEmpty @Size(min = 4, max = 4, message = "Employee ID should only contain 4 characters") String empno,
+			@NotEmpty @Size(min = 4, max = 25, message = "Employee name should have 4-25 characters") String ename,
 			@NotNull @Min(value = 15000, message = "Basic salary should be greater than Rs. 15000") @Max(value = 50000, message = "Basic salary should be less than Rs. 50000") float basicSal,
 			@NotNull char deptno, @NotNull char job,
 			@NotEmpty @Size(min = 4, max = 4, message = "City should only ontain 4 charactes") String city,
@@ -58,6 +62,7 @@ public class EmpDto {
 			@NotNull @PastOrPresent(message = "Hiredate cant be a date in future") Date hiredate, String photo) {
 		super();
 		this.empno = empno;
+		this.ename = ename.toUpperCase();
 		this.basicSal = basicSal;
 		this.deptno = deptno;
 		this.job = job;
@@ -78,7 +83,16 @@ public class EmpDto {
 		this.empno = empno;
 	}
 
-
+	
+	public String getEname() {
+		return ename;
+	}
+	
+	
+	public void setEname(String ename) {
+		this.ename = ename.toUpperCase();
+	}
+	
 
 	public float getBasicSal() {
 		return basicSal;

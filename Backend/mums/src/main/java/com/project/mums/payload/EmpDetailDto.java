@@ -15,10 +15,6 @@ public class EmpDetailDto {
 	@Size(min=4, max=4, message="Employee ID should only contain 4 characters")
 	private String empno;
 	
-	@NotEmpty
-	@Size(min=4, max=25, message="Employee name should have 4-25 characters")
-	private String ename;
-	
 	@NotNull
    	private long mobileNumber;
 	
@@ -51,7 +47,6 @@ public class EmpDetailDto {
 			int pinCode, String address) {
 		super();
 		this.empno = empno.toUpperCase();
-		this.ename = ename.toUpperCase();
 		this.mobileNumber = mobileNumber;
 		this.gender = gender;
 		this.aadhar = aadhar;
@@ -66,8 +61,6 @@ public class EmpDetailDto {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	
 	public String getEmpno() {
 		return empno;
 	}
@@ -75,14 +68,7 @@ public class EmpDetailDto {
 	public void setEmpno(String empno) {
 		this.empno = empno.toUpperCase();
 	}
-	
-	public String getEname() {
-		return ename;
-	}
-	
-	public void setEname(String ename) {
-		this.ename = ename.toUpperCase();
-	}
+
 	
 	public long getMobileNumber() {
 	

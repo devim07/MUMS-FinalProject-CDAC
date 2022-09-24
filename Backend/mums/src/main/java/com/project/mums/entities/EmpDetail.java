@@ -15,11 +15,7 @@ public class EmpDetail {
 	@Id
 	@Column(name="ENUM",length=4)
 	private String empno;
-	
-	@Column(name="ENAME",length=4)
-	private String ename;
-    //ENAME VARCHAR(25) NOT NULL,
-	
+		
 	@Column(name="MOB",length=10,nullable=false)
 	private long mobileNumber;
     //MOB BIGINT NOT NULL
@@ -58,14 +54,7 @@ public class EmpDetail {
 	public void setEmpno(String empno) {
 		this.empno = empno;
 	}
-	
-	public String getEname() {
-		return ename;
-	}
-	
-	public void setEname(String ename) {
-		this.ename = ename;
-	}
+
 	
 	public long getMobileNumber() {
 		return mobileNumber;
@@ -128,11 +117,11 @@ public class EmpDetail {
 	}
 	
 	
-	public EmpDetail(String empno, String ename, long mobileNumber, char gender, long aadhar, Date dob, String city,
+	public EmpDetail(String empno, long mobileNumber, char gender, long aadhar, Date dob, String city,
 			int pinCode, String address) {
 		super();
 		this.empno = empno;
-		this.ename = ename;
+		
 		this.mobileNumber = mobileNumber;
 		this.gender = gender;
 		this.aadhar = aadhar;
