@@ -25,6 +25,7 @@ public class Emp {
     private float hra;
     private float totsal;
     private Date hiredate;
+    private String photo;
 
     
     
@@ -35,18 +36,22 @@ public class Emp {
 	}
 
 
-	public Emp(String empno, float basicSal, char deptno, char job, String city, String email, float hra,
-			Date hiredate) {
+	public Emp(String empno, float basicSal, char deptno, char job, int holidays, String city, String email, float hra,
+		float totsal, Date hiredate, String photo) {
 		super();
 		this.empno = empno;
 		this.basicSal = basicSal;
 		this.deptno = deptno;
 		this.job = job;
+		this.holidays = holidays;
 		this.city = city;
 		this.email = email;
 		this.hra = hra;
+		this.totsal = totsal;
 		this.hiredate = hiredate;
+		this.photo = photo;
 	}
+
 
 
 	public String getEmpno() {
@@ -147,5 +152,17 @@ public class Emp {
 	public void setHiredate(Date hiredate) {
 		this.hiredate = hiredate;
 	}
+
+
+	public String getPhoto() {
+		return photo;
+	}
+
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
+	
 
 }

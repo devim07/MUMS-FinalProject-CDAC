@@ -24,15 +24,12 @@ public class Cust {
 	
 	private String city;
 	private  byte rating;
+	private String photo;
 	
 	
 	
-	public Cust() {
-		super();
-		}
-
-	
-	public Cust(int custno, String salesno, String custname, long mobileNumber, String city, byte rating) {
+	public Cust(int custno, String salesno, String custname, long mobileNumber, String city, byte rating,
+			String photo) {
 		super();
 		this.custno = custno;
 		this.salesno = salesno;
@@ -40,8 +37,13 @@ public class Cust {
 		this.mobileNumber = mobileNumber;
 		this.city = city;
 		this.rating = rating;
+		this.photo = photo;
 	}
 
+
+	public Cust() {
+		super();
+		}
 
 
 	public int getCustno() {
@@ -92,4 +94,16 @@ public class Cust {
 	public void setRating(byte rating) {
 		this.rating = rating;
 	}
+
+
+	public String getPhoto() {
+		return photo;
+	}
+
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
+	
 }

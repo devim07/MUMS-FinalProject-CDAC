@@ -76,10 +76,10 @@ public class SalesmanServiceImpl implements SalesmanService {
 		return salesmanDto;
 	}
 
-	private Salesman dtoToSalesman(SalesmanDto salesmanDto) {
-		Salesman salesman=this.modelMapper.map(salesmanDto, Salesman.class);
-		return salesman;
-	}
+//	private Salesman dtoToSalesman(SalesmanDto salesmanDto) {
+//		Salesman salesman=this.modelMapper.map(salesmanDto, Salesman.class);
+//		return salesman;
+//	}
 
 
 

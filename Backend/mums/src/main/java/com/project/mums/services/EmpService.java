@@ -10,4 +10,5 @@ public interface EmpService {
 	EmpDto getEmpById (String empno) ;
 	List<EmpDto> getAllEmps();
 	void deleteEmp (String empno);
+	EmpDto setPhoto(String empno, String fileName);
 }

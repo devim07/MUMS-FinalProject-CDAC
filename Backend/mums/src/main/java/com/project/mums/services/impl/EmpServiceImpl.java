@@ -76,7 +76,17 @@ public class EmpServiceImpl implements EmpService {
 		new ResourceNotFoundException("Employee", "Employee ID", empno));
 		this.empRepo.delete(emp);
 	}
-	
+
+
+
+	@Override
+	public EmpDto setPhoto(String empno, String fileName) {
+		Emp emp=this.empRepo.findById(empno).orElseThrow(()->
+		new ResourceNotFoundException("Employee", "Employee ID", empno)); 
+		emp.setPhoto(fileName);
+		Emp savedEmp=this.empRepo.save(emp);
+		return empToDto(savedEmp);
+	}
 	
 	
 	public Emp dtoToEmp(EmpDto empDto) {
@@ -90,5 +100,6 @@ public class EmpServiceImpl implements EmpService {
 		EmpDto empDto=this.modelMapper.map(emp, EmpDto.class);
 		return empDto;
 	}
+
 
 }

@@ -50,7 +50,17 @@ public class CustServiceImpl  implements CustService{
 		cust= dtoToCust(custDto);
 		return custToDto(this.custRepo.save(cust));
 	}
-	
+
+
+
+	@Override
+	public CustDto setPhoto(int cnum, String fileName) {
+		Cust cust=this.custRepo.findById(cnum).orElseThrow(()->
+		new ResourceNotFoundException("Customer", "Customer ID", ((Integer)cnum).toString())); 
+		cust.setPhoto(fileName);
+		Cust savedCust=this.custRepo.save(cust);
+		return custToDto(savedCust);
+	}
 	
 
 	@Override
@@ -82,4 +92,5 @@ public class CustServiceImpl  implements CustService{
 		CustDto custDto = this.modelMapper.map(cust,CustDto.class);
 		return custDto;
 	}
+
 }

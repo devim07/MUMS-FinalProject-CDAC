@@ -38,6 +38,8 @@ public class EmpDto {
 	@NotNull
 	@PastOrPresent(message="Hiredate cant be a date in future")
     private Date hiredate;
+	
+	private String photo;
 
     
     
@@ -47,19 +49,23 @@ public class EmpDto {
 	}
 
 
-
-	public EmpDto(String empno, float basicSal, char deptno, char job, String city, String email,
-			Date hiredate) {
+	public EmpDto(
+			@NotEmpty @Size(min = 4, max = 4, message = "Employee ID should only contain 4 characters") String empno,
+			@NotNull @Min(value = 15000, message = "Basic salary should be greater than Rs. 15000") @Max(value = 50000, message = "Basic salary should be less than Rs. 50000") float basicSal,
+			@NotNull char deptno, @NotNull char job,
+			@NotEmpty @Size(min = 4, max = 4, message = "City should only ontain 4 charactes") String city,
+			@NotEmpty @Email(message = "Enter proper e-mail address") String email,
+			@NotNull @PastOrPresent(message = "Hiredate cant be a date in future") Date hiredate, String photo) {
 		super();
-		this.empno = empno.toUpperCase();
+		this.empno = empno;
 		this.basicSal = basicSal;
 		this.deptno = deptno;
 		this.job = job;
-		this.city = city.toUpperCase();
-		this.email = email.toUpperCase();
+		this.city = city;
+		this.email = email;
 		this.hiredate = hiredate;
+		this.photo = photo;
 	}
-
 
 
 	public String getEmpno() {
@@ -142,6 +148,16 @@ public class EmpDto {
 
 	public void setHiredate(Date hiredate) {
 		this.hiredate = hiredate;
+	}
+
+
+	public String getPhoto() {
+		return photo;
+	}
+
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	
 	

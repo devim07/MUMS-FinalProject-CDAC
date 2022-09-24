@@ -27,22 +27,16 @@ public class CustDto {
 	private  byte rating;
 	
 	private String salesno;
+	private String photo;
 	
 	
 	
-	
-	public CustDto() {
-		super();
-	}
-
-	
-
 	public CustDto(@NotNull int custno,
 			@NotEmpty @Size(min = 4, message = "Name should atleast have 4 characters") String custname,
 			@NotEmpty @Size(min = 4, max = 4, message = "City should only ontain 4 charactes") String city,
 			@NotNull long mobileNumber,
 			@NotNull @Min(value = 0, message = "Rating cannot be negative") @Max(value = 10, message = "Rating should be between 0 to 10") byte rating,
-			String salesno) {
+			String salesno, String photo) {
 		super();
 		this.custno = custno;
 		this.custname = custname;
@@ -50,8 +44,14 @@ public class CustDto {
 		this.mobileNumber = mobileNumber;
 		this.rating = rating;
 		this.salesno = salesno;
+		this.photo = photo;
 	}
 
+
+
+	public CustDto() {
+		super();
+	}
 
 
 	public int getCustno() {
@@ -94,8 +94,6 @@ public class CustDto {
 		this.salesno = salesno;
 	}
 
-
-
 	public byte getRating() {
 		return rating;
 	}
@@ -103,4 +101,18 @@ public class CustDto {
 	public void setRating(byte rating) {
 		this.rating = rating;
 	}
+
+
+
+	public String getPhoto() {
+		return photo;
+	}
+
+
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
+	
 }

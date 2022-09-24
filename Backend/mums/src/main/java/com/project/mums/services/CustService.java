@@ -10,4 +10,5 @@ public interface CustService {
 	CustDto updateCust (CustDto custDto, int custno);
 	CustDto getCustById (int custno);
 	List<CustDto> getAllCusts();
+	CustDto setPhoto(int cnum, String fileName);
 }
