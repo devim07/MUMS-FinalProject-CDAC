@@ -3,6 +3,8 @@ package com.project.mums.services.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +49,18 @@ public class EmpServiceImpl implements EmpService {
 		emp=dtoToEmp(empDto);
 		return empToDto(this.empRepo.save(emp));
 	}
+
+
+
+	@Override
+	public EmpDto updateEmpHoliday(@Valid EmpDto empDto, String empno, int days) {
+		if (!(empno).toUpperCase().equals(empDto.getEmpno()))
+			throw new IdMisMatchException(empno,empDto.getEmpno());
+		Emp emp=this.empRepo.findById(empno)
+				.orElseThrow(()-> new ResourceNotFoundException("Employee", "Employee ID", empno));
+		emp.setHolidays(emp.getHolidays()+days);
+		return empToDto(this.empRepo.save(emp));
+	}
 	
 	
 
@@ -89,6 +103,16 @@ public class EmpServiceImpl implements EmpService {
 	}
 	
 	
+	
+	@Override
+	public List<EmpDto> getEmpByDeptno(String deptNo) {
+		List<Emp> allByDeptno = this.empRepo.findAllByDeptno(deptNo);
+		List<EmpDto> empDtos = allByDeptno.stream().map(emp->this.empToDto(emp)).collect(Collectors.toList());
+		return empDtos;
+	}
+
+	
+	
 	public Emp dtoToEmp(EmpDto empDto) {
 		Emp emp=this.modelMapper.map(empDto, Emp.class);
 		return emp;
@@ -100,6 +124,7 @@ public class EmpServiceImpl implements EmpService {
 		EmpDto empDto=this.modelMapper.map(emp, EmpDto.class);
 		return empDto;
 	}
+
 
 
 }

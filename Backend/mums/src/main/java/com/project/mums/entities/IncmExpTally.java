@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="INCM_EXP_TALLY")
 public class IncmExpTally {
-	@Id
+	
 	private String head;
 	
 	@Column(name="AMT")
@@ -19,6 +19,7 @@ public class IncmExpTally {
 	@Column(name="ENTRY_DATE")
 	private Date entrydate;
 	
+	@Id
 	private String remark;
 
 	public IncmExpTally() {

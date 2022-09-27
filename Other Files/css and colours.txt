@@ -1,0 +1,5 @@
+rgba(251, 232, 166, 1)     -YELLOW
+rgba(244, 151, 108, 1)     -ORANGE
+rgba(48, 60, 108, 1)       -NAVY
+rgba(180, 223, 229, 1)     -DULL SKY
+rgba(210, 253, 255, 1)     -SKY

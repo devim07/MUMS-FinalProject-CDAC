@@ -19,7 +19,7 @@ public class Emp {
 	@Column (name="BASIC_SAL", nullable=false)
 	private float basicSal;
     
-	private char deptno;
+	private String deptno;
 	private char job;
     private int holidays;
     private String city;
@@ -38,7 +38,7 @@ public class Emp {
 	}
 
 
-	public Emp(String empno, String ename, float basicSal, char deptno, char job, int holidays, String city, String email, float hra,
+	public Emp(String empno, String ename, float basicSal, String deptno, char job, int holidays, String city, String email, float hra,
 		float totsal, Date hiredate, String photo) {
 		super();
 		this.empno = empno;
@@ -85,12 +85,12 @@ public class Emp {
 	}
 
 
-	public char getDeptno() {
+	public String getDeptno() {
 		return deptno;
 	}
 
 
-	public void setDeptno(char deptno) {
+	public void setDeptno(String deptno) {
 		this.deptno = deptno;
 	}
 

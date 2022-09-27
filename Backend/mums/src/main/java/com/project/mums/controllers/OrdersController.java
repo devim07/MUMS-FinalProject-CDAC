@@ -1,6 +1,7 @@
 package com.project.mums.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -42,15 +43,21 @@ public class OrdersController {
 	}
 	
 	
-	@GetMapping("customer/{custno}")
+	@GetMapping("/customer/{custno}")
 	public ResponseEntity<List<OrderDto>> getAllOrderOfCust(@PathVariable int custno){
 		return ResponseEntity.ok(this.orderService.getAllOrderOfCust(custno));
 	}
 	
 	
-	@GetMapping("salesman/{salesno}")
+	@GetMapping("/salesman/{salesno}")
 	public ResponseEntity<List<OrderDto>> getAllOrderOfSalesman(@PathVariable String salesno){
 		return ResponseEntity.ok(this.orderService.getAllOrderOfSalesman(salesno));
+	}
+	
+	
+	@GetMapping("/salesman/all")
+	public ResponseEntity<Map<String,Integer>> getAllOrderOfAllSalesman(){
+		return ResponseEntity.ok(this.orderService.getAllOrderOfAllSalesman());
 	}
 	
 	

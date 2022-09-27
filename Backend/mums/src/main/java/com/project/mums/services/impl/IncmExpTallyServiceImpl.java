@@ -1,5 +1,7 @@
 package com.project.mums.services.impl;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +28,9 @@ public class IncmExpTallyServiceImpl implements IncmExpTallyService {
 	@Override
 	public List<IncmExpTallyDto> getAllByMonthYear(int year, int month) {
 		List<IncmExpTally> incmExpTallys=this.incmExpTallyRepo.getAllByMonthYearFromDb(year, month);
+		String query="%"+month+"/"+year+"--"+"%";
+		List<IncmExpTally> calculations = this.incmExpTallyRepo.getCalculationByMonthYearFromDb(query);
+		incmExpTallys.addAll(calculations);
 		List<IncmExpTallyDto> incmExpTallyDtos =incmExpTallys.stream().map(incmExpTally->this.incmExpTallyToDto(incmExpTally)).collect(Collectors.toList());
 		return incmExpTallyDtos;
 
@@ -40,6 +45,29 @@ public class IncmExpTallyServiceImpl implements IncmExpTallyService {
 	return incmExpTallyDtos;
 	}
 
+
+
+	@Override
+	public List<IncmExpTallyDto> getPast5MonthsIncome() {
+		List<IncmExpTallyDto> incomes= new ArrayList<>();
+		IncmExpTally inc =null;
+		String query;
+		int month=LocalDate.now().getMonthValue();
+		int year=LocalDate.now().getYear();
+		for(int i=0; i<5; i++) {
+			query="%"+(month-i)+"/"+year+"-- TOTAL INCOME%";
+			inc = this.incmExpTallyRepo.getTotalIncomeFromDb(query);
+			incomes.add(incmExpTallyToDto(inc));
+		}
+		return incomes;
+		
+//		List<IncmExpTally> totalIncome = this.incmExpTallyRepo.getAllByHead("T");
+//		for(IncmExpTally i:totalIncome) {
+//			System.out.println(i.getRemark());
+//		}
+//		List<IncmExpTallyDto> totalIncomeDtos =totalIncome.stream().map(income->this.incmExpTallyToDto(income)).collect(Collectors.toList());
+//		return totalIncomeDtos;
+	}
 	
 	
 	
@@ -47,4 +75,5 @@ public class IncmExpTallyServiceImpl implements IncmExpTallyService {
 		IncmExpTallyDto incmExpTallyDto = this.modelMapper.map(incmExpTally,IncmExpTallyDto.class);
 		return incmExpTallyDto;
 	}
+
 }

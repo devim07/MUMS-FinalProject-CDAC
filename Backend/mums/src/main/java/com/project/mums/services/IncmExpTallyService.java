@@ -8,5 +8,6 @@ public interface IncmExpTallyService {
 
 	List<IncmExpTallyDto> getAll();
 	List<IncmExpTallyDto> getAllByMonthYear(int year, int month);
+	List<IncmExpTallyDto> getPast5MonthsIncome();
 	
 }

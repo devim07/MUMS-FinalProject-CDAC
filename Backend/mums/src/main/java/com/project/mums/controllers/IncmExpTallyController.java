@@ -30,4 +30,9 @@ public class IncmExpTallyController {
 	public ResponseEntity<List<IncmExpTallyDto>> getAllByMonthYear(@PathVariable int year,@PathVariable int month) {
 		return ResponseEntity.ok(this.incmExpTallyService.getAllByMonthYear(year, month));
 	}
+	
+	@GetMapping("/past")
+	public ResponseEntity<List<IncmExpTallyDto>> getPastIncome() {
+		return ResponseEntity.ok(this.incmExpTallyService.getPast5MonthsIncome());
+	}
 }

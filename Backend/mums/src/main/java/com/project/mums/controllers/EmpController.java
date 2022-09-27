@@ -65,5 +65,17 @@ public class EmpController {
 		this.empService.deleteEmp(id);
 		return ResponseEntity.ok(Map.of("message", "Employee deleted successfully"));
 	}
+	
+	
+	@GetMapping("/dept/{deptNo}")
+	public ResponseEntity<List<EmpDto>> getEmpByDeptno(@PathVariable String deptNo){
+		return ResponseEntity.ok(this.empService.getEmpByDeptno(deptNo));
+	}
+	
+	
+	@PutMapping("/holiday/{id}/{days}")
+	public ResponseEntity<EmpDto> updateEmpHoliday(@Valid @RequestBody EmpDto empDto, @PathVariable String id, @PathVariable int days){
+		return ResponseEntity.ok(this.empService.updateEmpHoliday(empDto, id, days));
+	}
 
 }
