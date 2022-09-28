@@ -14,4 +14,5 @@ public interface OrderService {
 	List<OrderDto> getAllOrderOfCust(int custno);
 	List<OrderDto> getAllOrderOfSalesman(String salesno);
 	Map<String, Integer> getAllOrderOfAllSalesman();
+	Map<String, Integer> getAllOrderOfAllCustomer();
 }

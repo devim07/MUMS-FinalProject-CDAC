@@ -21,8 +21,8 @@ import com.project.mums.payload.LoginDto;
 import com.project.mums.services.LoginService;
 
 @RestController
-@RequestMapping("/login")
-@CrossOrigin("http://localhost:3000")
+@RequestMapping("/loginService")
+@CrossOrigin
 public class LoginController {
 	
 	@Autowired

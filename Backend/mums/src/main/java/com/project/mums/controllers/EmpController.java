@@ -23,7 +23,7 @@ import com.project.mums.services.EmpService;
 
 @RestController
 @RequestMapping("/employee")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "Requestor-Type")
 public class EmpController {
 	
 	@Autowired

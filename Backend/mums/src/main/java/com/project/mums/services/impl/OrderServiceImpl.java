@@ -11,10 +11,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.project.mums.entities.Cust;
 import com.project.mums.entities.Order;
 import com.project.mums.entities.Salesman;
 import com.project.mums.exceptions.ResourceNotFoundException;
 import com.project.mums.payload.OrderDto;
+import com.project.mums.repository.CustRepo;
 import com.project.mums.repository.OrderRepo;
 import com.project.mums.repository.SalesmanRepo;
 import com.project.mums.services.OrderService;
@@ -27,6 +29,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
 	private SalesmanRepo salesmanRepo;
+	
+	@Autowired
+	private CustRepo custRepo;
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -108,6 +113,19 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 
+
+	@Override
+	public Map<String, Integer> getAllOrderOfAllCustomer() {
+		Map<String,Integer> allOrders=new HashMap<>();
+		List<Cust> custs = this.custRepo.findAll();
+		for(Cust cust:custs) {
+			int amt=this.custRepo.getAllOrderOfCustomerFromDb(cust.getCustno());
+			allOrders.put(cust.getCustname()+"-#"+cust.getCustno(), amt);
+			}
+		return allOrders;
+	}
+
+
 	
 	
 //	@Override
@@ -129,6 +147,7 @@ public class OrderServiceImpl implements OrderService {
 		Order order=this.modelMapper.map(orderDto, Order.class);
 		return order;
 	}
+
 
 	
 	

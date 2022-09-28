@@ -1,12 +1,15 @@
 package com.project.mums.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,5 +37,10 @@ public class IncmExpTallyController {
 	@GetMapping("/past")
 	public ResponseEntity<List<IncmExpTallyDto>> getPastIncome() {
 		return ResponseEntity.ok(this.incmExpTallyService.getPast5MonthsIncome());
+	}
+	
+	@PostMapping("/")
+	public ResponseEntity<List<IncmExpTallyDto>> monthlyExp(@RequestBody Map<Integer, Integer> data){
+		return ResponseEntity.ok(this.incmExpTallyService.calculateMonthlyExp(data));
 	}
 }

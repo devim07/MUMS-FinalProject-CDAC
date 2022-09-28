@@ -29,6 +29,8 @@ public class EmpDto {
 	@Size(min=1, max=1)
 	private String deptno;
 	
+	private Integer holidays;
+	
 	@NotNull
 	private char job;
 	
@@ -53,11 +55,14 @@ public class EmpDto {
 		super();
 	}
 
-		public EmpDto(
+	
+
+		
+	public EmpDto(
 			@NotEmpty @Size(min = 4, max = 4, message = "Employee ID should only contain 4 characters") String empno,
 			@NotEmpty @Size(min = 4, max = 25, message = "Employee name should have 4-25 characters") String ename,
 			@NotNull @Min(value = 15000, message = "Basic salary should be greater than Rs. 15000") @Max(value = 50000, message = "Basic salary should be less than Rs. 50000") float basicSal,
-			@NotEmpty @Size(min = 1, max = 1) String deptno, @NotNull char job,
+			@NotEmpty @Size(min = 1, max = 1) String deptno, Integer holidays, @NotNull char job,
 			@NotEmpty @Size(min = 4, max = 4, message = "City should only ontain 4 charactes") String city,
 			@NotEmpty @Email(message = "Enter proper e-mail address") String email,
 			@NotNull @PastOrPresent(message = "Hiredate cant be a date in future") Date hiredate, String photo) {
@@ -66,6 +71,7 @@ public class EmpDto {
 		this.ename = ename;
 		this.basicSal = basicSal;
 		this.deptno = deptno;
+		this.holidays = holidays;
 		this.job = job;
 		this.city = city;
 		this.email = email;
@@ -73,7 +79,9 @@ public class EmpDto {
 		this.photo = photo;
 	}
 
-		
+
+
+
 	public String getEmpno() {
 		return empno;
 	}
@@ -173,6 +181,14 @@ public class EmpDto {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public Integer getHolidays() {
+		return holidays;
+	}
+
+	public void setHolidays(Integer holidays) {
+		this.holidays = holidays;
 	}
 	
 	

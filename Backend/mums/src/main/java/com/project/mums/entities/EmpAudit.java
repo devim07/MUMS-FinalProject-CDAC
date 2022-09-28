@@ -1,6 +1,6 @@
 package com.project.mums.entities;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +21,7 @@ public class EmpAudit {
 	private String user;
 	
 	@Column(name="TIME_STAMP")
-	private Date timestamp;
+	private LocalDateTime timestamp;
 	
 	private String remark;
 
@@ -29,7 +29,7 @@ public class EmpAudit {
 		super();
 	}
 
-	public EmpAudit(int serialno, String empno, String user, Date timestamp, String remark) {
+	public EmpAudit(int serialno, String empno, String user, LocalDateTime timestamp, String remark) {
 		super();
 		this.serialno = serialno;
 		this.empno = empno;
@@ -62,11 +62,11 @@ public class EmpAudit {
 		this.user = user;
 	}
 
-	public Date getTimestamp() {
+	public LocalDateTime getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Date timestamp) {
+	public void setTimestamp(LocalDateTime timestamp) {
 		this.timestamp = timestamp;
 	}
 

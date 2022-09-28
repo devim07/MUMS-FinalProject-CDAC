@@ -1,5 +1,6 @@
 package com.project.mums.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -101,7 +102,13 @@ public class EmpServiceImpl implements EmpService {
 		Emp savedEmp=this.empRepo.save(emp);
 		return empToDto(savedEmp);
 	}
-	
+
+
+
+	@Override
+	public void calculateTotSalary() {
+		this.empRepo.calculateSalaryInDb(LocalDate.now().getYear(), LocalDate.now().getMonthValue());
+	}
 	
 	
 	@Override
@@ -124,6 +131,7 @@ public class EmpServiceImpl implements EmpService {
 		EmpDto empDto=this.modelMapper.map(emp, EmpDto.class);
 		return empDto;
 	}
+
 
 
 

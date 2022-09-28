@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +26,9 @@ import com.project.mums.services.CustService;
 import com.project.mums.services.EmpService;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+@RequestMapping("/upload")
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "Requestor-Type")
+
 public class FileUploadController {
 	
 	@Autowired
@@ -37,7 +40,8 @@ public class FileUploadController {
 	@Autowired
 	private CustService custService;
 
-	@PostMapping("/upload/employee/{empno}")
+	
+	@PostMapping("employee/{empno}")
 	public ResponseEntity<EmpDto> imageUpload(
 			@PathVariable String empno,
 			@RequestParam MultipartFile image
@@ -72,7 +76,8 @@ public class FileUploadController {
 	}
 	
 	
-	@PostMapping("/upload/customer/{cnum}")
+
+	@PostMapping("customer/{cnum}")
 	public ResponseEntity<CustDto> imageUpload(
 			@PathVariable int cnum,
 			@RequestParam MultipartFile image

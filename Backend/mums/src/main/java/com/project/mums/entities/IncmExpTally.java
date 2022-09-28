@@ -14,7 +14,7 @@ public class IncmExpTally {
 	private String head;
 	
 	@Column(name="AMT")
-	private float amount;
+	private Float amount;
 	
 	@Column(name="ENTRY_DATE")
 	private Date entrydate;
@@ -26,7 +26,7 @@ public class IncmExpTally {
 		super();
 	}
 
-	public IncmExpTally(String head, float amount, Date entrydate, String remark) {
+	public IncmExpTally(String head, Float amount, Date entrydate, String remark) {
 		super();
 		this.head = head;
 		this.amount = amount;
@@ -42,11 +42,11 @@ public class IncmExpTally {
 		this.head = head;
 	}
 
-	public float getAmount() {
+	public Float getAmount() {
 		return amount;
 	}
 
-	public void setAmount(float amount) {
+	public void setAmount(Float amount) {
 		this.amount = amount;
 	}
 

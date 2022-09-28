@@ -21,7 +21,18 @@ public class OldSalaryServiceImpl implements OldSalaryService {
 	
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
+
+
+	@Override
+	public List<OldSalaryDto> getAll() {
+		List<OldSalary> oldSalarys=this.oldSalaryRepo.findAll();
+		if(oldSalarys.isEmpty())
+			return null;
+		List<OldSalaryDto> oldSalaryDtos =oldSalarys.stream().map(oldSalary->this.oldSalaryToDto(oldSalary)).collect(Collectors.toList());
+		return oldSalaryDtos;
+	}
+
 	
 	
 	@Override
@@ -62,7 +73,6 @@ public class OldSalaryServiceImpl implements OldSalaryService {
 		OldSalaryDto oldSalaryDto = this.modelMapper.map(oldSalary,OldSalaryDto.class);
 		return oldSalaryDto;
 	}
-
 
 
 }

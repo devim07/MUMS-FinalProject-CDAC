@@ -10,4 +10,5 @@ public interface OldSalaryService {
 //	List<OldSalaryDto> getAllOldSalarys();
 	List<OldSalaryDto> getAllByMonthYear(int year, int month);
 	OldSalaryDto getParticularOldSalaryById(int year, int month, String id);
+	List<OldSalaryDto> getAll();
 }

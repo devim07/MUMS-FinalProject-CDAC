@@ -3,6 +3,7 @@ package com.project.mums.services.impl;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -27,9 +28,9 @@ public class IncmExpTallyServiceImpl implements IncmExpTallyService {
 	
 	@Override
 	public List<IncmExpTallyDto> getAllByMonthYear(int year, int month) {
-		List<IncmExpTally> incmExpTallys=this.incmExpTallyRepo.getAllByMonthYearFromDb(year, month);
 		String query="%"+month+"/"+year+"--"+"%";
 		List<IncmExpTally> calculations = this.incmExpTallyRepo.getCalculationByMonthYearFromDb(query);
+		List<IncmExpTally> incmExpTallys=this.incmExpTallyRepo.getAllByMonthYearFromDb(year, month);
 		incmExpTallys.addAll(calculations);
 		List<IncmExpTallyDto> incmExpTallyDtos =incmExpTallys.stream().map(incmExpTally->this.incmExpTallyToDto(incmExpTally)).collect(Collectors.toList());
 		return incmExpTallyDtos;
@@ -48,13 +49,22 @@ public class IncmExpTallyServiceImpl implements IncmExpTallyService {
 
 
 	@Override
+	public List<IncmExpTallyDto> calculateMonthlyExp(Map<Integer, Integer> data) {
+		System.out.println("mon"+data.get(0)+"year"+data.get(1)+ data.get(2)+ data.get(3)+ data.get(4));
+		this.incmExpTallyRepo.calcMonthlyExpDb(data.get(0), data.get(1), data.get(2), data.get(3), data.get(4));
+		List<IncmExpTallyDto> all = getAllByMonthYear(data.get(1), data.get(0));
+		return all;
+	}
+
+
+	@Override
 	public List<IncmExpTallyDto> getPast5MonthsIncome() {
 		List<IncmExpTallyDto> incomes= new ArrayList<>();
 		IncmExpTally inc =null;
 		String query;
-		int month=LocalDate.now().getMonthValue();
+		int month=(LocalDate.now().getMonthValue())-1;
 		int year=LocalDate.now().getYear();
-		for(int i=0; i<5; i++) {
+		for(int i=0; i<4; i++) {
 			query="%"+(month-i)+"/"+year+"-- TOTAL INCOME%";
 			inc = this.incmExpTallyRepo.getTotalIncomeFromDb(query);
 			incomes.add(incmExpTallyToDto(inc));
@@ -75,5 +85,6 @@ public class IncmExpTallyServiceImpl implements IncmExpTallyService {
 		IncmExpTallyDto incmExpTallyDto = this.modelMapper.map(incmExpTally,IncmExpTallyDto.class);
 		return incmExpTallyDto;
 	}
+
 
 }

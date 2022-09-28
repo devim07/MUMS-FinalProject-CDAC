@@ -2,20 +2,17 @@ package com.project.mums.payload;
 
 	import java.sql.Date;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
 	public class IncmExpTallyDto {
-		@NotEmpty
+		
 		private String head;
 		
-		@NotNull
-		private float amount;
 		
-		@NotNull
+		private Float amount;
+		
+		
 	    private Date entrydate;
 	    
-	    @NotEmpty
+	    
 		private String remark;
 
 		
@@ -24,7 +21,7 @@ import javax.validation.constraints.NotNull;
 			super();
 		}
 
-		public IncmExpTallyDto(String head, float amount, Date entrydate, String remark) {
+		public IncmExpTallyDto(String head, Float amount, Date entrydate, String remark) {
 			super();
 			this.head = head;
 			this.amount = amount;
@@ -40,11 +37,11 @@ import javax.validation.constraints.NotNull;
 			this.head = head;
 		}
 
-		public float getAmount() {
+		public Float getAmount() {
 			return amount;
 		}
 
-		public void setAmount(float amount) {
+		public void setAmount(Float amount) {
 			this.amount = amount;
 		}
 

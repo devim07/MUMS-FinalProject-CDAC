@@ -61,6 +61,12 @@ public class OrdersController {
 	}
 	
 	
+	@GetMapping("/customer/all")
+	public ResponseEntity<Map<String,Integer>> getAllOrderOfAllCustomer(){
+		return ResponseEntity.ok(this.orderService.getAllOrderOfAllCustomer());
+	}
+	
+	
 	@PostMapping( "/")
 	public ResponseEntity<OrderDto> createOrder(@Valid @RequestBody OrderDto orderDto){
 		OrderDto createdOrder=this.orderService.createOrder(orderDto);

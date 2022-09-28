@@ -1,6 +1,6 @@
 package com.project.mums.payload;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -19,7 +19,7 @@ public class EmpAuditDto {
 	private String user;
 	
 	@NotNull
-	private Date timestamp;
+	private LocalDateTime timestamp;
 	
 	@NotEmpty
 	private String remark;
@@ -30,7 +30,7 @@ public class EmpAuditDto {
 		super();
 	}
 
-	public EmpAuditDto(int serialno, String empno, String user, Date timestamp, String remark) {
+	public EmpAuditDto(int serialno, String empno, String user, LocalDateTime timestamp, String remark) {
 		super();
 		this.serialno = serialno;
 		this.empno = empno.toUpperCase();
@@ -65,11 +65,11 @@ public class EmpAuditDto {
 		this.user = user.toUpperCase();
 	}
 
-	public Date getTimestamp() {
+	public LocalDateTime getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Date timestamp) {
+	public void setTimestamp(LocalDateTime timestamp) {
 		this.timestamp = timestamp;
 	}
 

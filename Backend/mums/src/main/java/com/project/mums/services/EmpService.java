@@ -15,4 +15,5 @@ public interface EmpService {
 	EmpDto setPhoto(String empno, String fileName);
 	List<EmpDto>  getEmpByDeptno(String deptNo);
 	EmpDto updateEmpHoliday(@Valid EmpDto empDto, String empno, int days);
+	void calculateTotSalary();
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 
 import com.project.mums.entities.IncmExpTally;
 
@@ -17,4 +18,7 @@ public interface IncmExpTallyRepo extends JpaRepository<IncmExpTally, String>{
 	
 	@Query (value="SELECT * FROM INCM_EXP_TALLY WHERE REMARK LIKE ?1",nativeQuery=true)
     public IncmExpTally getTotalIncomeFromDb(String query);
+	
+	@Procedure (value="MONTHLY_EXP")
+	public void calcMonthlyExpDb(int mon, int year, int ele, int rent, int misc);
 }
