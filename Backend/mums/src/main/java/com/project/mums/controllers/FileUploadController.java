@@ -46,6 +46,7 @@ public class FileUploadController {
 			@PathVariable String empno,
 			@RequestParam MultipartFile image
 			){
+		System.out.println("Reached here");
 		String fileName=image.getOriginalFilename();
 		fileName=fileName.substring(fileName.lastIndexOf("."));
 		fileName=empno+fileName;
@@ -60,7 +61,7 @@ public class FileUploadController {
 				e.printStackTrace();
 			}
 		}
-		
+		System.out.println("2222 Reached here");
 		path=path.resolve(path+File.separator+fileName);
 		EmpDto updatedEmp=null;
 		System.out.println("path==========="+path.toString());

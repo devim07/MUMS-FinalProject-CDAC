@@ -43,7 +43,7 @@ public class SecurityConfig {
 		.csrf().disable()
 		.cors().and()
 		.authorizeHttpRequests()
-		.antMatchers("/login").permitAll()
+		.antMatchers("/login","/upload/**").permitAll()
 		.antMatchers("/employeeAudit","/incmexptally", "/production").hasRole("ADMIN")
 		.antMatchers("/oldsalary","/employee").hasAnyRole("EMPLOYEE", "ADMIN")
 		.anyRequest()
