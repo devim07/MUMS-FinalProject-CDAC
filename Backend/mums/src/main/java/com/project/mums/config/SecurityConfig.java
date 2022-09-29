@@ -45,7 +45,7 @@ public class SecurityConfig {
 		.authorizeHttpRequests()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/employeeAudit","/incmexptally", "/production").hasRole("ADMIN")
-		.antMatchers("/oldsalary").hasAnyRole("EMPLOYEE", "ADMIN")
+		.antMatchers("/oldsalary","/employee").hasAnyRole("EMPLOYEE", "ADMIN")
 		.anyRequest()
 		.authenticated().and()
 		.exceptionHandling().authenticationEntryPoint(this.jwtAuthenticationEntryPoint)

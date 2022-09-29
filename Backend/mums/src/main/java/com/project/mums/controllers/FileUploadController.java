@@ -27,7 +27,7 @@ import com.project.mums.services.EmpService;
 
 @RestController
 @RequestMapping("/upload")
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "Requestor-Type")
+@CrossOrigin(origins = "*", allowedHeaders = {"Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"}, exposedHeaders = {"Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"})
 
 public class FileUploadController {
 	
