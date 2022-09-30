@@ -36,7 +36,12 @@ public class IncmExpTallyController {
 	
 	@GetMapping("/past")
 	public ResponseEntity<List<IncmExpTallyDto>> getPastIncome() {
-		return ResponseEntity.ok(this.incmExpTallyService.getPast5MonthsIncome());
+		return ResponseEntity.ok(this.incmExpTallyService.getPast4MonthsIncome());
+	}
+	
+	@GetMapping("/prediction")
+	public ResponseEntity<Double> getPrediction() {
+		return ResponseEntity.ok(this.incmExpTallyService.prediction());
 	}
 	
 	@PostMapping("/")

@@ -58,26 +58,39 @@ public class IncmExpTallyServiceImpl implements IncmExpTallyService {
 
 
 	@Override
-	public List<IncmExpTallyDto> getPast5MonthsIncome() {
+	public List<IncmExpTallyDto> getPast4MonthsIncome() {
 		List<IncmExpTallyDto> incomes= new ArrayList<>();
 		IncmExpTally inc =null;
 		String query;
 		int month=(LocalDate.now().getMonthValue())-1;
 		int year=LocalDate.now().getYear();
-		for(int i=0; i<4; i++) {
+		for(int i=3; i>=0; i--) {
 			query="%"+(month-i)+"/"+year+"-- TOTAL INCOME%";
 			inc = this.incmExpTallyRepo.getTotalIncomeFromDb(query);
 			incomes.add(incmExpTallyToDto(inc));
 		}
-		return incomes;
-		
-//		List<IncmExpTally> totalIncome = this.incmExpTallyRepo.getAllByHead("T");
-//		for(IncmExpTally i:totalIncome) {
-//			System.out.println(i.getRemark());
-//		}
-//		List<IncmExpTallyDto> totalIncomeDtos =totalIncome.stream().map(income->this.incmExpTallyToDto(income)).collect(Collectors.toList());
-//		return totalIncomeDtos;
+		return incomes;		
 	}
+
+
+
+	@Override
+	public Double prediction() {
+		List<Float> incomes= new ArrayList<>();
+		IncmExpTally inc =null;
+		String query;
+		int month=(LocalDate.now().getMonthValue())-1;
+		int year=LocalDate.now().getYear();
+		for(int i=0; i<3; i++) {
+			query="%"+(month-i)+"/"+year+"-- TOTAL INCOME%";
+			inc = this.incmExpTallyRepo.getTotalIncomeFromDb(query);
+			incomes.add(inc.getAmount());
+		}
+		double predict=(0.5*incomes.get(0))+(0.3*incomes.get(1)+(0.2*incomes.get(2)))*1.1;
+		predict=((int)(predict/10000)+1)*10000;
+		return predict;
+	}
+
 	
 	
 	

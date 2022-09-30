@@ -14,5 +14,5 @@ public class AppConstants {
 	};
 	
 	
-	public static final long JWT_TOKEN_VALIDITY = 10*60*1000;
+	public static final long JWT_TOKEN_VALIDITY = 100*60*60;
 }

@@ -61,7 +61,7 @@ public class FileUploadController {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("2222 Reached here");
+		//System.out.println("2222 Reached here");
 		path=path.resolve(path+File.separator+fileName);
 		EmpDto updatedEmp=null;
 		System.out.println("path==========="+path.toString());
