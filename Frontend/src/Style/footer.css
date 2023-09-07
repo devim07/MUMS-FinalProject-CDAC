@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Philosopher:wght@700&display=swap');
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+
+.footer__logo i {
+    color: #fff;
+    font-weight: 400;
+}
+
+.footer__logo span {
+    color: #fff;
+    font-weight: 500;
+}
+
+.footer__logo-content {
+    color: rgba(255, 255, 255, 0.715);
+    margin-top: 15px;
+    line-height: 30px;
+    z-index: 10; 
+}
+
+.quick__link {
+    border: none !important;
+    background: transparent !important;
+}
+
+.quick__link a {
+    color: rgba(255, 255, 255, 0.715);
+    text-decoration: none;
+    font-weight: 300;
+    transition: 0.3s;
+}
+
+.quick__link a:hover {
+    color: #f9a826;
+}
+
+.footer__link-title {
+    color: rgb(15, 15, 15);
+}
+
+.office__info {
+    color: rgba(14, 14, 14, 0.715);
+    font-weight: 300;
+}
+
+.newsletter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border: 1px solid #7c8a972f;
+    border-radius: 50px;
+    background: #020a4de9;
+}
+
+.newsletter input {
+    background: transparent;
+    color: #fff;
+    border: none;
+    outline: none;
+}
+
+.newsletter span i {
+    color: #fff;
+}
+
+.footer__bottom {
+    border-top: 3px solid rgba(48, 60, 108, 0.7);
+}
+
+@media only screen and (max-width: 768px) {
+    .footer__logo-content {
+        font-size: 0.8rem;
+    }
+
+    .quick__link,
+    .office__info {
+        font-size: 0.8rem;
+        line-height: 1.5rem;
+    }
+
+    .footer__link-title {
+        font-size: 2 rem;
+        margin-top: 15px;
+    }
+
+    .footer__bottom p {
+        font-size: 3.0 rem;
+    }
+
+
+}

@@ -1,0 +1,20 @@
+.icon:hover{
+    background-color: rgba(210, 253, 255, 1) ;
+}
+
+.icon:hover{
+    background-color: rgba(210, 253, 255, 1) ;
+}
+
+.textbox{
+    border-color: rgba(210, 253, 255, 1) ;
+}
+
+.card:hover{
+    box-shadow: 2px 2px 2px rgba(244, 151, 108, 1);
+    background-color: rgba(210, 253, 255, 0.5);
+}
+
+/* tr:hover{
+    background-color: rgba(251, 232, 166, 0.5);
+} */

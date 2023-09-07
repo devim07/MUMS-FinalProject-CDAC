@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Philosopher:wght@700&display=swap');
+
+h1,h2,h3,h4,h5 { 
+  font-family: 'Philosopher', sans-serif;
+}
+
+body, html{
+  font-family: 'Lora', serif;
+}
+
+/* ======= base style ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lora', serif;
+}
+
+/* ========= pre-define css ========= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgba(48, 60, 108, 1);
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+h3,
+h4 {
+  font-size: 1.6rem;
+}
+
+h5,
+h6 {
+  font-size: 1.2rem;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+a:hover {
+  color: unset;
+}
+
+ul {
+  margin: 0;
+  list-style: none;
+}
+
+.section__title {
+  color: rgba(48, 60, 108, 1);
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.section__subtitle {
+  color: rgba(251, 232, 166, 1);
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.section__description {
+  color:rgba(48, 60, 108, 1) ;
+  font-size: 0.9rem;
+  line-height: 30px;
+}
+
+section {
+  padding: 50px 0px;
+}
+
+.btn {
+  padding: 7px 15px;
+  background:  rgba(48, 60, 108, 1);
+  color: rgba(210, 253, 255, 1);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  color: rgba(210, 253, 255, 1) !important;
+  background: rgba(48, 60, 108, 1);
+}
+
+.card-hover:hover{
+  width:105%;
+  height:105%;
+  box-shadow: inset 0px 0px 0px white ,
+      5px 5px 7px rgba(180, 223, 229, 0.9);
+}
+
+@media only screen and (max-width: 768px) {
+  section {
+    padding: 30px 0px;
+  }
+
+  .section__title {
+    font-size: 1.6rem;
+  }
+
+  .section__subtitle {
+    font-size: 1.1rem;
+  }
+
+
+}
+
